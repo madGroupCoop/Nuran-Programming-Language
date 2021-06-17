@@ -1,18 +1,12 @@
-#######################################
 # IMPORTS
-#######################################
 
 from strings_with_arrows import *
 
-#######################################
 # CONSTANTS
-#######################################
 
 DIGITS = '0123456789'
 
-#######################################
 # ERRORS
-#######################################
 
 
 class Error:
@@ -66,9 +60,7 @@ class RTError(Error):
 
         return 'Traceback (most recent call last):\n' + result
 
-#######################################
 # POSITION
-#######################################
 
 
 class Position:
@@ -92,9 +84,7 @@ class Position:
     def copy(self):
         return Position(self.idx, self.ln, self.col, self.fn, self.ftxt)
 
-#######################################
 # TOKENS
-#######################################
 
 
 TT_INT = 'INT'
@@ -126,9 +116,7 @@ class Token:
             return f'{self.type}:{self.value}'
         return f'{self.type}'
 
-#######################################
 # LEXER
-#######################################
 
 
 class Lexer:
@@ -199,9 +187,7 @@ class Lexer:
         else:
             return Token(TT_FLOAT, float(num_str), pos_start, self.pos)
 
-#######################################
 # NODES
-#######################################
 
 
 class NumberNode:
@@ -239,9 +225,7 @@ class UnaryOpNode:
     def __repr__(self):
         return f'({self.op_tok}, {self.node})'
 
-#######################################
 # PARSE RESULT
-#######################################
 
 
 class ParseResult:
@@ -265,9 +249,7 @@ class ParseResult:
         self.error = error
         return self
 
-#######################################
 # PARSER
-#######################################
 
 
 class Parser:
@@ -351,9 +333,7 @@ class Parser:
 
         return res.success(left)
 
-#######################################
 # RUNTIME RESULT
-#######################################
 
 
 class RTResult:
@@ -374,9 +354,7 @@ class RTResult:
         self.error = error
         return self
 
-#######################################
 # VALUES
-#######################################
 
 
 class Number:
@@ -420,9 +398,7 @@ class Number:
     def __repr__(self):
         return str(self.value)
 
-#######################################
 # CONTEXT
-#######################################
 
 
 class Context:
@@ -431,9 +407,7 @@ class Context:
         self.parent = parent
         self.parent_entry_pos = parent_entry_pos
 
-#######################################
 # INTERPRETER
-#######################################
 
 
 class Interpreter:
@@ -492,7 +466,6 @@ class Interpreter:
         else:
             return res.success(number.set_pos(node.pos_start, node.pos_end))
 
-#######################################
 # RUN
 #######################################
 
